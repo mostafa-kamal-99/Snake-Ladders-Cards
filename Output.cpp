@@ -1,8 +1,7 @@
 #include "Output.h"
 
 #include "Input.h"
-#define heightY 450
-#define widthX  640
+
 ////////////////////////////////////////////////////////////////////////////////////////// 
 
 Output::Output()
@@ -101,10 +100,7 @@ Input* Output::CreateInput() const
 int Output::GetCellStartX(const CellPosition & cellPos) const
 {
 	///TODO: implement the following function as described in Output.h file
-	int h,Xpos;
-	h=cellPos.HCell();
-	Xpos=(h*widthX/11)+40;
-	return Xpos; // this line should be changed with your implementation
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -112,10 +108,7 @@ int Output::GetCellStartX(const CellPosition & cellPos) const
 int Output::GetCellStartY(const CellPosition & cellPos) const
 {
 	///TODO: implement the following function as described in Output.h file
-	int v,Ypos;
-	v=cellPos.VCell();
-	Ypos=(v*heightY/8)+60;
-		return Ypos; // this line should be changed with your implementation
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -267,6 +260,7 @@ void Output::PrintMessage(string msg) const	//Prints a message on status bar
 void Output::PrintPlayersInfo(string info)
 {
 	///TODO: Clear what was written on the toolbar
+	ClearToolBar();
 
 	// Set the pen and font before drawing the string on the window
 	pWind->SetPen(UI.PlayerInfoColor); 
@@ -276,6 +270,7 @@ void Output::PrintPlayersInfo(string info)
 
 	///TODO: Calculate the Width and Height of the string if drawn using the current font 
 	//       (Use GetStringSize() window function) and set the "w" and "h" variables with its width and height
+	pWind->GetStringSize(w,h,info);
 
 
 
@@ -285,7 +280,7 @@ void Output::PrintPlayersInfo(string info)
 	int y = (UI.ToolBarHeight - h) / 2; // in the Middle of the toolbar height
 
 	///TODO: Draw the string "info" in the specified location (x, y)
-
+	pWind->DrawString(x,y,info);
 
 
 }
