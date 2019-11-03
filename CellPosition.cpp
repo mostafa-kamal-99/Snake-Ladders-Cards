@@ -87,8 +87,8 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 
 
 	/// TODO: Implement this function as described in the .h file
-	position.SetVCell( 8 - ( (cellNum%9+8) % 9 ) ) ;
-    position.SetHCell(  (cellNum%11+10) % 11  );
+	position.SetVCell( 8 - ( (cellNum-1)/11 ) ) ;
+        position.SetHCell(  (cellNum%11+10) % 11  );
 
 	// Note: use the passed cellNum to set the vCell and hCell of the "position" variable declared inside the function
 	//       I mean: position.SetVCell(...) and position.SetHCell(...) then return it
