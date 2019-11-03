@@ -73,10 +73,10 @@ int CellPosition::GetCellNumFromPosition(const CellPosition & cellPosition)
 	// just define an integer that represents cell number and calculate it using the passed cellPosition then return it
 
 	///TODO: Implement this function as described in the .h file
-
+	int CNum = (8-cellPosition.VCell())*(11) + cellPosition.HCell() + 1 ;
 	
 
-	return 0; // this line should be changed with your implementation
+	return CNum ; // this line should be changed with your implementation
 }
 
 CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
@@ -85,13 +85,13 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 
 	CellPosition position;
 
+
 	/// TODO: Implement this function as described in the .h file
-
-
+	position.SetVCell( 8 - ( (cellNum%9+8) % 9 ) ) ;
+    position.SetHCell(  (cellNum%11+10) % 11  );
 
 	// Note: use the passed cellNum to set the vCell and hCell of the "position" variable declared inside the function
 	//       I mean: position.SetVCell(...) and position.SetHCell(...) then return it
-
 
 	return position;
 }
