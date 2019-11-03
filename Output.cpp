@@ -1,8 +1,7 @@
 #include "Output.h"
 
 #include "Input.h"
-#define heightY 450
-#define widthX  640
+
 ////////////////////////////////////////////////////////////////////////////////////////// 
 
 Output::Output()
@@ -101,10 +100,8 @@ Input* Output::CreateInput() const
 int Output::GetCellStartX(const CellPosition & cellPos) const
 {
 	///TODO: implement the following function as described in Output.h file
-	int h,Xpos;
-	h=cellPos.HCell();
-	Xpos=(h*widthX/11)+40;
-	return Xpos; // this line should be changed with your implementation
+
+	return 0; // this line should be changed with your implementation
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -112,10 +109,8 @@ int Output::GetCellStartX(const CellPosition & cellPos) const
 int Output::GetCellStartY(const CellPosition & cellPos) const
 {
 	///TODO: implement the following function as described in Output.h file
-	int v,Ypos;
-	v=cellPos.VCell();
-	Ypos=(v*heightY/8)+60;
-		return Ypos; // this line should be changed with your implementation
+
+	return 0; // this line should be changed with your implementation
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -264,10 +259,10 @@ void Output::PrintMessage(string msg) const	//Prints a message on status bar
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-void Output::PrintPlayersInfo(string info)
+void Output::PrintPlayersInfo(string info) //DONE BY ELHADIDY
 {
 	///TODO: Clear what was written on the toolbar
-
+	ClearToolBar();
 	// Set the pen and font before drawing the string on the window
 	pWind->SetPen(UI.PlayerInfoColor); 
 	pWind->SetFont(20, BOLD , BY_NAME, "Verdana");   
@@ -275,20 +270,23 @@ void Output::PrintPlayersInfo(string info)
 	int w=0, h=0;
 
 	///TODO: Calculate the Width and Height of the string if drawn using the current font 
+
 	//       (Use GetStringSize() window function) and set the "w" and "h" variables with its width and height
 
-
-
+	pWind->GetStringSize(w,h,info);
+	
+	
 	// Set the start X & Y coordinate of drawing the string
 	int x = UI.width - w - 20; // space 20 before the right-side of the window
 	                           // ( - w ) because x is the coordinate of the start point of the string (upper left)
 	int y = (UI.ToolBarHeight - h) / 2; // in the Middle of the toolbar height
 
 	///TODO: Draw the string "info" in the specified location (x, y)
-
-
+	pWind->DrawString(x,y,info);
 
 }
+
+
 
 //======================================================================================//
 //			         			Game Drawing Functions   								//
@@ -309,7 +307,7 @@ void Output::DrawCell(const CellPosition & cellPos, int cardNum) const
 		pWind->SetBrush(UI.CellColor_HasCard);
 
 	///TODO: Draw the Cell Rectangle using the appropriate coordinates
-	pWind->DrawRectangle(cellStartX,cellStartY,cellStartX+20,cellStartY+10,FILLED,20,20) ;
+	
 
 
 	// ----- 2- Draw the CELL number (the small number at the bottom right of the cell) -----
@@ -320,7 +318,7 @@ void Output::DrawCell(const CellPosition & cellPos, int cardNum) const
 
 	///TODO: Get the Width and Height of the Cell Number if written using the current font 
 	//       (Use GetIntegerSize() window function) and set the "w" and "h" variables with its width and height
-	pWind->GetIntegerSize(w,h,cellNum) ;
+
 
 
 	// Calculate X & Y coordinate of the start point of writing the card number (upper left point of the cell num)
@@ -330,7 +328,7 @@ void Output::DrawCell(const CellPosition & cellPos, int cardNum) const
 												   // ( - w ) because y is for the start point of cell num (num's upper corner)
 	
 	///TODO: Draw the cell number in the x and y location
-	pWind->DrawInteger(x,y,cellNum) ;
+
 	
 
 	// ----- 3- Draw card number (if any) -----
@@ -344,7 +342,7 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 {
 
 	///TODO: Validate the playerNum, if not valid return
-    if(playerNum > 3 || playerNum < 0 ) return ;
+
 	
 
 	// Get the X & Y coordinates of the start point of the cell (its upper left corner)
@@ -374,7 +372,6 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 		x += radius + 2 + radius; // because playerNum 1 and 3 are drawn in the second column of circles
 
 	///TODO: Draw the player circle in center(x,y) and filled with the playerColor passed to the function
-	pWind->DrawCircle(x,y,radius,FILLED) ;
 
 
 	
@@ -386,7 +383,7 @@ void Output::DrawLadder(const CellPosition & fromCell, const CellPosition & toCe
 {
 
 	///TODO: Validate the Cell Position (Must be Vertical Cells AND toCell below fromCell, otherwise, Do NOT draw)
-	if( (fromCell.HCell() != toCell.HCell()) || fromCell.VCell() >= toCell.VCell() ) return ;
+	
 
 	
 	// Get the start X and Y coordinates of the upper left corner of the fromCell
@@ -402,11 +399,11 @@ void Output::DrawLadder(const CellPosition & fromCell, const CellPosition & toCe
 	int y2 = toStartY + UI.CellHeight - UI.LadderYOffset; // the coordinate y of the second point of the First Vertical line
 
 	///TODO: Set pen color and width using the appropriate parameters of UI_Info object (UI)
-	pWind->SetPen(UI.LadderColor , UI.LadderlineWidth ) ;
+
 
 
 	///TODO: Draw The First Vertical Line (The Left Line) in the appropriate coordinates
-	pWind->DrawLine(x12,y1,x12,y2,FRAME) ;
+
 
 
 	// ---- 2- Draw the Second Vertical Line ---- 
@@ -414,11 +411,10 @@ void Output::DrawLadder(const CellPosition & fromCell, const CellPosition & toCe
 	                                                        // the y coordinates is the same as the First Vertical Line
 
 	///TODO: Set pen color and width using the appropriate variables of UI_Info object (UI)
-	pWind->SetPen(UI.LadderColor , UI.LadderlineWidth ) ;
+
 
 
 	///TODO: Draw The Second Vertical Line (The Right Line) in the appropriate coordinates
-	pWind->DrawLine(x12,y1,x12,y2,FRAME) ;
 
 
 
