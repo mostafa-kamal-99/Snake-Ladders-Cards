@@ -19,6 +19,7 @@ enum ActionType // The actions supported (add more as needed)
 	Copy,
 	Cut,
 	Paste,
+	Delete,
 
 	//  [2] Actions of Play Mode
 	ROLL_DICE,		// Roll Dice Action
