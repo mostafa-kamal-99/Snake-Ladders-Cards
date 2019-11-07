@@ -1,2 +1,6 @@
 # Snake-Ladders-Cards
-المشروع ابن المرة الأحبة 
+Progress :
+CellPosition : COMPLETE & TESTED
+UIINFO / DEFS : COMPLETE , NO TESTING NEEDED
+OUTPUT : NOT COMPLETE
+INPUT : COMPLETE, NOT TESTED
