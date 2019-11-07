@@ -16,13 +16,16 @@ enum ActionType // The actions supported (add more as needed)
 	TO_PLAY_MODE,	// Go to Play Mode
 
 	///TODO: Add more action types of Design Mode
+	Copy,
+	Cut,
+	Paste,
 
 	//  [2] Actions of Play Mode
-
 	ROLL_DICE,		// Roll Dice Action
 	TO_DESIGN_MODE,	// Go to Design Mode
-
+	
 	///TODO: Add more action types of Play Mode
+	ADD_Palyer,
 
 	//  [3] Others
 
