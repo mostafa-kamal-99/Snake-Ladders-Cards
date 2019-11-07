@@ -215,6 +215,7 @@ void Output::CreateDesignModeToolBar() const
 	MenuItemImages[ITM_Copy] = "images\\Menu_Copy.jpg";
 	MenuItemImages[ITM_Cut] = "images\\Menu_Cut.jpg";
 	MenuItemImages[ITM_Paste] = "images\\Menu_Paste.jpg";
+	MenuItemImages[ITM_Delete] = "images\\Menu_Delete.jpg";
 	MenuItemImages[ITM_SaveGrid] = "images\\Menu_Save.jpg";
 	MenuItemImages[ITM_LoadGrid] = "images\\Menu_Load.jpg";
 
