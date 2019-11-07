@@ -211,7 +211,13 @@ void Output::CreateDesignModeToolBar() const
 	MenuItemImages[ITM_EXIT] = "images\\Menu_Exit.jpg";
 	MenuItemImages[ITM_SWITCH_TO_PLAY_MODE] = "images\\Menu_SwitchToGame.jpg";
 
-	///TODO: Prepare images for each menu item and add it to the list
+	///TODO: Prepare images for each menu item and add it to the list KAREEM
+	MenuItemImages[ITM_Copy] = "images\\Menu_Copy.jpg";
+	MenuItemImages[ITM_Cut] = "images\\Menu_Cut.jpg";
+	MenuItemImages[ITM_Paste] = "images\\Menu_Paste.jpg";
+	MenuItemImages[ITM_SaveGrid] = "images\\Menu_Save.jpg";
+	MenuItemImages[ITM_LoadGrid] = "images\\Menu_Load.jpg";
+
 
 
 
@@ -242,6 +248,7 @@ void Output::CreatePlayModeToolBar() const
 	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\Menu_SwitchToGrid.jpg";
 
 	///TODO: Prepare images for each menu item and add it to the list
+	MenuItemImages[ITM_Player] = "images\\Menu_Player.jpg";
 
 
 
