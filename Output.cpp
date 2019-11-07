@@ -100,6 +100,10 @@ Input* Output::CreateInput() const
 int Output::GetCellStartX(const CellPosition & cellPos) const
 {
 	///TODO: implement the following function as described in Output.h file
+	int h,xpos;  
+	h =cellPos.HCell();
+	xpos= (h*widthX/11)+150 ;
+	return xpos;
 
 }
 
@@ -108,6 +112,10 @@ int Output::GetCellStartX(const CellPosition & cellPos) const
 int Output::GetCellStartY(const CellPosition & cellPos) const
 {
 	///TODO: implement the following function as described in Output.h file
+	int v,ypos; 
+	v = cellPos.VCell();
+    ypos= (v*heightY/8)+60;
+	return ypos;
 
 }
 
