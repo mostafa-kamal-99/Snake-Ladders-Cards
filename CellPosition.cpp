@@ -29,17 +29,24 @@ CellPosition::CellPosition (int cellNum)
 bool CellPosition::SetVCell(int v) 
 {
 	///TODO: Implement this function as described in the .h file (don't forget the validation)
+if (v>=0 && v<=10 )  
+{
+	vCell = v; return true ; 
+}
+	else return false;
 
-
-	return false; // this line sould be changed with your implementation
+	
 }
 
 bool CellPosition::SetHCell(int h) 
 {
 	///TODO: Implement this function as described in the .h file (don't forget the validation)
-
-
-	return false; // this line sould be changed with your implementation
+if (h>=0 && h<=8 )  
+	{
+		hCell = h; 
+		return true ;
+	}
+	else return false; 
 }
 
 int CellPosition::VCell() const 
@@ -55,9 +62,9 @@ int CellPosition::HCell() const
 bool CellPosition::IsValidCell() const 
 {
 	///TODO: Implement this function as described in the .h file
+if (vCell>=0 && vCell<=10 && hCell>=0 && hCell<=8 )   return true ; 
 
-
-	return false; // this line sould be changed with your implementation
+	else return false; 
 }
 
 int CellPosition::GetCellNum() const
@@ -100,6 +107,13 @@ void CellPosition::AddCellNum (int addedNum)
 {
 	
 	/// TODO: Implement this function as described in the .h file
+int num;
+	num = GetCellNum ();
+	num += addedNum;
+
+	CellPosition x = GetCellPositionFromNum(num) ;
+	SetVCell(x.VCell());
+	SetHCell(x.HCell());
 
 
 
