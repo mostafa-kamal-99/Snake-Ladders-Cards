@@ -29,7 +29,14 @@ enum DESIGN_MODE_ITEMS // The items of the Design Mode (you should add more item
 	ITM_SWITCH_TO_PLAY_MODE,
 	
 	///TODO: Add more items names here
-
+	ITM_Copy,
+	ITM_Cut,
+	ITM_Paste,
+	ITM_Delete,
+	
+	ITM_SaveGrid,
+	ITM_LoadGrid,
+	
 	DESIGN_ITM_COUNT	// no. of items ==> This should be the last line in this enum
 };
 
@@ -42,6 +49,7 @@ enum PLAY_MODE_ITEMS // The items of the Play Mode (you should add more items)
 	ITM_SWITCH_TO_DESIGN_MODE,
 
 	///TODO: Add more items names here
+	ITM_Player,
 
 	PLAY_ITM_COUNT		// no. of items ==> This should be the last line in this enum
 };
