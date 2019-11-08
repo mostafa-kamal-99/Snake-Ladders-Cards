@@ -100,10 +100,7 @@ Input* Output::CreateInput() const
 int Output::GetCellStartX(const CellPosition & cellPos) const
 {
 	///TODO: implement the following function as described in Output.h file
-	int h,xpos;  
-	h =cellPos.HCell();
-	xpos= (h*widthX/11)+150 ;
-	return xpos;
+	return cellPos.HCell()*UI.CellWidth ;
 
 }
 
@@ -112,10 +109,7 @@ int Output::GetCellStartX(const CellPosition & cellPos) const
 int Output::GetCellStartY(const CellPosition & cellPos) const
 {
 	///TODO: implement the following function as described in Output.h file
-	int v,ypos; 
-	v = cellPos.VCell();
-    ypos= (v*heightY/8)+60;
-	return ypos;
+	return cellPos.VCell()*UI.CellHeight + UI.StatusBarHeight + UI.ToolBarHeight ;
 
 }
 
@@ -136,7 +130,7 @@ void Output::DrawCardNumber(const CellPosition & cellPos, int cardNum) const
 
 	///TODO: Calculate the Width & Height of the integer "cardNum" if written using the Current Font
 	//       (Use GetIntegerSize() window function) and set the "w" and "h" variables with its width and height
-
+	pWind->GetIntegerSize(w,h,cardNum) ;
 
 
 	// Calculate where to write the integer of the cardNum
@@ -146,7 +140,7 @@ void Output::DrawCardNumber(const CellPosition & cellPos, int cardNum) const
 
 
 	///TODO: Draw the Integer the representing the "cardNum" in the location (x,y)
-	
+	pWind->DrawInteger(x,y,cardNum) ;
 
 
 }
@@ -320,7 +314,7 @@ void Output::DrawCell(const CellPosition & cellPos, int cardNum) const
 		pWind->SetBrush(UI.CellColor_HasCard);
 
 	///TODO: Draw the Cell Rectangle using the appropriate coordinates
-	pWind->DrawRectangle(cellStartX,cellStartY,cellStartX+20,cellStartY+10,FILLED,20,20) ;
+	pWind->DrawRectangle(cellStartX,cellStartY,cellStartX+UI.CellWidth,cellStartY+UI.CellHeight) ;
 
 
 	// ----- 2- Draw the CELL number (the small number at the bottom right of the cell) -----
@@ -397,7 +391,7 @@ void Output::DrawLadder(const CellPosition & fromCell, const CellPosition & toCe
 {
 
 	///TODO: Validate the Cell Position (Must be Vertical Cells AND toCell below fromCell, otherwise, Do NOT draw)
-	if( (fromCell.HCell() != toCell.HCell()) || fromCell.VCell() >= toCell.VCell() ) return ;
+	if( ( fromCell.HCell() != toCell.HCell() ) || fromCell.VCell() >= toCell.VCell() ) return ;
 
 	
 	// Get the start X and Y coordinates of the upper left corner of the fromCell
@@ -429,7 +423,7 @@ void Output::DrawLadder(const CellPosition & fromCell, const CellPosition & toCe
 
 
 	///TODO: Draw The Second Vertical Line (The Right Line) in the appropriate coordinates
-	pWind->DrawLine(x12,y1,x12,y2,FRAME) ;
+	pWind->DrawLine(x34,y1,x34,y2,FRAME) ;
 
 
 
@@ -439,8 +433,13 @@ void Output::DrawLadder(const CellPosition & fromCell, const CellPosition & toCe
 	// Check the drawn ladders in the project document and imitate it
 
 	///TODO: Draw the cross horizontal lines of the ladder using the appropriate coordinates
-
-
+	CellPosition Iterator = toCell ;
+	while( Iterator.VCell() >= fromCell.VCell() ){
+		int x = GetCellStartX(Iterator) ;
+		int y = GetCellStartY(Iterator) ;
+		pWind->DrawLine(x,y,x+UI.CellWidth,y);
+		Iterator.SetVCell(Iterator.VCell() - 1) ;
+	}
 	
 }
 
@@ -450,7 +449,7 @@ void Output::DrawSnake(const CellPosition & fromCell, const CellPosition & toCel
 {
 
 	///TODO: Validate the fromCell and toCell (Must be Vertical and toCell is below fromCell otherwise do NOT draw)
-	
+	if( fromCell.HCell() != toCell.HCell() || fromCell.VCell() >= toCell.VCell() ) return ;
 
 
 	// Get the upper left corner coordinates of the fromCell and toCell
@@ -466,11 +465,11 @@ void Output::DrawSnake(const CellPosition & fromCell, const CellPosition & toCel
 	int y2 = toStartY + UI.CellHeight/2;
 
 	///TODO: Set pen color and width from the appropriate variables of the UI_Info object (UI)
-
+	pWind->SetPen(UI.SnakeColor , UI.SnakelineWidth ) ;
 
 
 	///TODO: Draw the Line representing the Snake BOdy
-	
+	pWind->DrawLine(x12,y1,x12,y2) ;
 
 
 	// ---- 2- Draw Polygon with Diamond Shape representing the Snake Head ----
@@ -484,13 +483,12 @@ void Output::DrawSnake(const CellPosition & fromCell, const CellPosition & toCel
 
 	///TODO: Set the coordinates of the 4 points of the Polygon
 	//       Check the snakes drawn in the project document and draw it the same way
-
-
-
+	int xVals[4] = {x12, x12+xChange, x12-xChange, x12} ;
+	int yVals[4] = {y2, y2-yChange, y2-yChange, y2-2*yChange} ;
 
 	///TODO: Draw the Polygon (diamond) representing the Snake's Head
 	//       Check the snakes drawn in the project document and draw it the same way
-
+	pWind->DrawPolygon(xVals,yVals,4) ;
 
 
 }
