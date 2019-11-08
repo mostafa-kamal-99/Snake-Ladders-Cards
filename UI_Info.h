@@ -32,6 +32,7 @@ enum DESIGN_MODE_ITEMS // The items of the Design Mode (you should add more item
 	ITM_Copy,
 	ITM_Cut,
 	ITM_Paste,
+	ITM_Delete,
 	
 	ITM_SaveGrid,
 	ITM_LoadGrid,
