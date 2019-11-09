@@ -1,9 +1,9 @@
 #include "Output.h"
 
 #include "Input.h"
-
+#include <iostream>
 ////////////////////////////////////////////////////////////////////////////////////////// 
-
+//LAST VERSION DONT MODIFY
 Output::Output()
 {
 	// Initialize user interface parameters
@@ -109,7 +109,7 @@ int Output::GetCellStartX(const CellPosition & cellPos) const
 int Output::GetCellStartY(const CellPosition & cellPos) const
 {
 	///TODO: implement the following function as described in Output.h file
-	return cellPos.VCell()*UI.CellHeight + UI.StatusBarHeight + UI.ToolBarHeight ;
+	return cellPos.VCell()*UI.CellHeight + UI.ToolBarHeight ;
 
 }
 
@@ -217,9 +217,11 @@ void Output::CreateDesignModeToolBar() const
 
 
 	// Draw menu item one image at a time
-	for(int i=0; i < DESIGN_ITM_COUNT; i++)
+	for(int i=0; i < DESIGN_ITM_COUNT; i++){
+		std::cout<<"iteration "<<i<<"was reached " ;
 		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
-
+		std::cout<<"\n\nAnd completed " ;
+	}
 
 }
 
