@@ -46,6 +46,12 @@ int main()
 
 	///TODO: Call Function DrawCell of Class Ouput Multiple Times
 	///       to draw cells in cell locations of: card_1, card_2, ..., card_10 declared above
+	pOut->DrawCell(card_1,1);
+	pOut->DrawCell(card_2,2);
+	pOut->DrawCell(card_3,3);
+	pOut->DrawCell(card_4,4);
+	pOut->DrawCell(card_10,10);
+	
 	///       with cardNum 1, 2, 3, 4 and 10 respectively
 
 
@@ -66,15 +72,30 @@ int main()
 	///TODO: Call Function DrawPlayer of Class Ouput Multiple Times
 	///       to draw the following players:
 	///       playerNum (0) with color (PlayerColors[0] defined in UI object) in cell position (player_1 declared above) 
+	pOut->DrawPlayer(player_1,0,0);
 	///       playerNum (1) with color (PlayerColors[1] defined in UI object) in cell position (player_1 declared above) 
+	pOut->DrawPlayer(player_1,1,1);
+	
 	///       playerNum (2) with color (PlayerColors[2] defined in UI object) in cell position (player_1 declared above) 
+	pOut->DrawPlayer(player_1,2,2);
+	
 	///       playerNum (3) with color (PlayerColors[3] defined in UI object) in cell position (player_1 declared above) 
+	pOut->DrawPlayer(player_1,3,3);
+	
 	///       playerNum (0) with color (PlayerColors[0] defined in UI object) in cell position (player_15 declared above) 
+	pOut->DrawPlayer(player_15,0,0);
+	
 	///       playerNum (1) with color (PlayerColors[1] defined in UI object) in cell position (player_99 declared above) 
+	pOut->DrawPlayer(player_99,1,1);
+	
 	///       playerNum (5) with color (PlayerColors[1] defined in UI object) in cell position (player_99 declared above) 
+	pOut->DrawPlayer(player_99,5,1);
+	
 	///       playerNum (-1) with color (PlayerColors[1] defined in UI object) in cell position (player_99 declared above) 
+	pOut->DrawPlayer(player_99,-1,1);
+	
 	///       Note the last two player is (INVALID)
-
+	
 
 	pOut->PrintMessage("FINISHED - Drawing (Players) Test,  Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -93,10 +114,13 @@ int main()
 	///TODO: Call Function DrawLadder of Class Ouput Multiple Times
 	///       to draw the following ladders:
 	///       a ladder from start_1 to end_34 declared above
+	pOut->DrawLadder(start_1,end_34);
 	///       a ladder from start_22 to end_99 declared above
+	pOut->DrawLadder(start_22,end_99);
 	///       a ladder from start_1 to end_99 declared above (invalid)
+	pOut->DrawLadder(start_1,end_99);
 	///       a ladder from end_34 to start_1 declared above (invalid)
-	
+	pOut->DrawLadder(end_34,start_1);
 
 
 	pOut->PrintMessage("FINISHED - Drawing (Ladders) Test,  Click to continue");
@@ -116,10 +140,13 @@ int main()
 	///TODO: Call Function DrawSnake of Class Ouput Multiple Times
 	///       to draw the following snakes:
 	///       a snake from start_24 to end_2 declared above
+	pOut->DrawSnake(start_24,end_2);
 	///       a snake from start_98 to end_32 declared above
+	pOut->DrawSnake(start_98,end_32);
 	///       a snake from start_98 to end_2 declared above (invalid)
+	pOut->DrawSnake(start_98,end_2);
 	///       a snake from end_2 to start_24 declared above (invalid)
-	
+	pOut->DrawSnake(end_2,start_24);
 
 
 	pOut->PrintMessage("FINISHED - Drawing (Snakes) Test,  Click to continue");
