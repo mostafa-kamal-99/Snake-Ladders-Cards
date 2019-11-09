@@ -1,12 +1,8 @@
 #include "Output.h"
-
+#include <iostream>
 #include "Input.h"
 ////////////////////////////////////////////////////////////////////////////////////////// 
-<<<<<<< HEAD
-//LAST VERSION DONT MODIFY
-=======
 //LAST VERSION DONT MODIFY 
->>>>>>> ba139e89d9bcd6311afff2ea332ea8f8e1b9c64a
 Output::Output()
 {
 	// Initialize user interface parameters
@@ -392,7 +388,7 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 
 void Output::DrawLadder(const CellPosition & fromCell, const CellPosition & toCell) const
 {
-
+	std::cout<<"\nThis Fucntion Was called " ;
 	///TODO: Validate the Cell Position (Must be Vertical Cells AND toCell below fromCell, otherwise, Do NOT draw)
 	if( ( fromCell.HCell() != toCell.HCell() ) || fromCell.VCell() >= toCell.VCell() ) return ;
 
@@ -434,15 +430,17 @@ void Output::DrawLadder(const CellPosition & fromCell, const CellPosition & toCe
 
 	// The cross lines are drawn on the Horizontal Borders of the Cells between fromCell to toCell
 	// Check the drawn ladders in the project document and imitate it
-
+	std::cout<<"And computing ...\n" ;
 	///TODO: Draw the cross horizontal lines of the ladder using the appropriate coordinates
 	CellPosition Iterator = toCell ;
-	while( Iterator.VCell() >= fromCell.VCell() ){
+	while( Iterator.VCell() > fromCell.VCell() ){
+		std::cout<<"\nANd iterated "<<toCell.VCell()-Iterator.VCell() <<"times" ;
 		int x = GetCellStartX(Iterator) ;
 		int y = GetCellStartY(Iterator) ;
-		pWind->DrawLine(x,y,x+UI.CellWidth,y);
+		pWind->DrawLine(x,y,x+UI.CellWidth,y,FRAME);
 		Iterator.SetVCell(Iterator.VCell() - 1) ;
 	}
+	std::cout<<"\n\nAnd finally completed" ;
 	
 }
 
