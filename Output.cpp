@@ -484,13 +484,24 @@ void Output::DrawSnake(const CellPosition & fromCell, const CellPosition & toCel
 
 	///TODO: Set the coordinates of the 4 points of the Polygon
 	//       Check the snakes drawn in the project document and draw it the same way
-	int xVals[4] = {x12, x12+xChange, x12-xChange, x12} ;
-	int yVals[4] = {y2, y2-yChange, y2-yChange, y2-2*yChange} ;
+
+
+	int xright = x12+xChange ; //Sol1
+	int xleft = x12 - xChange ;
+	int yabove = y1 - yChange ;
+	int aboveYabove = y1 - 2*yChange ;
+
+	int xVals[4] = {x12 , x12+0.5*xChange , x12 - 0.5*xChange  , x12} ;
+	int yVals[4] = {y1 , yabove , yabove , aboveYabove } ;
 
 	///TODO: Draw the Polygon (diamond) representing the Snake's Head
 	//       Check the snakes drawn in the project document and draw it the same way
-	pWind->DrawPolygon(xVals,yVals,4) ;
 
+	pWind->DrawLine(x12,y1,xleft,yabove) ; //Sol1
+	pWind->DrawLine(x12,y1,xright,yabove) ;
+	pWind->DrawLine(xright,yabove,x12,aboveYabove) ;
+	pWind->DrawLine(xleft,yabove,x12,aboveYabove);
+	pWind->DrawPolygon(xVals,yVals,4) ;
 
 }
 
