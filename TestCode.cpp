@@ -1,5 +1,6 @@
 #include "Input.h"
 #include "Output.h"
+#include <iostream>
 //This is a test code to test the Input and Output classes
 
 int main()
@@ -114,9 +115,11 @@ int main()
 	///TODO: Call Function DrawLadder of Class Ouput Multiple Times
 	///       to draw the following ladders:
 	///       a ladder from start_1 to end_34 declared above
+	std::cout<<"This section of code was reachedA " ;
 	pOut->DrawLadder(start_1,end_34);
 	///       a ladder from start_22 to end_99 declared above
 	pOut->DrawLadder(start_22,end_99);
+	std::cout<<"But this Not " ;
 	///       a ladder from start_1 to end_99 declared above (invalid)
 	pOut->DrawLadder(start_1,end_99);
 	///       a ladder from end_34 to start_1 declared above (invalid)
@@ -171,8 +174,16 @@ int main()
 	// 2- Print it in the status bar in this format:   You Entered: 116
 	//    (assuming the entered number is 116)
 	// 3- Call GetPointClicked() function
+	int input = pIn->GetInteger(pOut) ;
+	std::string info("You Entered: ") ;
+	char num[10] ;
+	sprintf(num,"%d",input) ;
+	cout<<num ;
+	std::string stringedNumber(num) ;
 
-
+	pIn->GetPointClicked(x,y) ;
+	pOut->PrintMessage( info + stringedNumber ) ;
+	pIn->GetPointClicked(x,y) ;
 
 	pOut->PrintMessage("FINISHED - (GetInteger) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -187,7 +198,18 @@ int main()
 	// 1- Call function GetCellClicked
 	// 2- Print on the status bar the vCell and hCell of the clicked cell
 	// 3- Repeat Step 1 and 2 five times
-
+	char num2[10] ;
+	for(int i = 0 ; i<5  ; i++){
+		CellPosition clicked =  pIn->GetCellClicked() ;
+		sprintf(num,"%d",clicked.VCell() ) ;
+		sprintf(num2,"%d",clicked.HCell() ) ;
+		std::string S(num) ;
+		std::string S2("  ") ;
+		std::string S3(num2) ;
+		pOut->PrintMessage(S+S2+S3) ;
+		pIn->GetPointClicked(x,y) ;
+		cout<<"\n\n"<<S+S2+S3 ;
+	}
 
 	pOut->PrintMessage("FINISHED - (GetCellClicked) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -204,7 +226,10 @@ int main()
 	// 2- After reading the string clear the status bar
 	// 3- print on the status bar "You Entered" then print the string
 	// NOTE: GetString() is already implemented. It is just required from you to call it
-
+	std::string inputted = pIn->GetSrting(pOut) ;
+	pIn->GetPointClicked(x,y) ;
+	pOut->PrintMessage(info + inputted) ;
+	pIn->GetPointClicked(x,y) ;
 
 
 	pOut->PrintMessage("FINISHED - (GetSrting) Test, Click to continue");
