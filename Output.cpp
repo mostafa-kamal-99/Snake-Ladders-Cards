@@ -1,9 +1,12 @@
 #include "Output.h"
 
 #include "Input.h"
-#include <iostream>
 ////////////////////////////////////////////////////////////////////////////////////////// 
+<<<<<<< HEAD
 //LAST VERSION DONT MODIFY
+=======
+//LAST VERSION DONT MODIFY 
+>>>>>>> ba139e89d9bcd6311afff2ea332ea8f8e1b9c64a
 Output::Output()
 {
 	// Initialize user interface parameters
@@ -218,9 +221,7 @@ void Output::CreateDesignModeToolBar() const
 
 	// Draw menu item one image at a time
 	for(int i=0; i < DESIGN_ITM_COUNT; i++){
-		std::cout<<"iteration "<<i<<"was reached " ;
 		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
-		std::cout<<"\n\nAnd completed " ;
 	}
 
 }
