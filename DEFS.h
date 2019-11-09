@@ -4,7 +4,7 @@
 #include "CMUgraphicsLib\CMUgraphics.h"
 
 // This file contains some global constants and definitions to be used in the project.
-
+//LAST VERSION DONT MODIFY 
 enum ActionType // The actions supported (add more as needed)
 {
 	//  [1] Actions of Design Mode
@@ -20,6 +20,9 @@ enum ActionType // The actions supported (add more as needed)
 	Cut,
 	Paste,
 	Delete,
+
+	Save_Grid ,
+	Load_Grid ,
 
 	//  [2] Actions of Play Mode
 	ROLL_DICE,		// Roll Dice Action
