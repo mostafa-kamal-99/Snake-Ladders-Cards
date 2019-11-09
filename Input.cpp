@@ -5,7 +5,7 @@
 //======================================================================================//
 //								General Functions									    //
 //======================================================================================//
-
+//LAST VERSION DONT MODIFY
 Input::Input(window* pW) 
 {
 	pWind = pW; // point to the passed window
@@ -47,13 +47,13 @@ int Input::GetInteger(Output *pO) const
 
 	///TODO: implement the GetInteger function as described in Input.h file 
 	//       using function GetString() defined above and function stoi()
-	
+	return stoi (GetSrting(pO));
 
 
 
 	// Note: stoi(s) converts string s into its equivalent integer (for example, "55" is converted to 55)
 
-	return 0; // this line should be changed with your implementation
+    // this line should be changed with your implementation
 }
 
 //======================================================================================//
@@ -88,7 +88,12 @@ ActionType Input::GetUserAction() const
 			case ITM_SWITCH_TO_PLAY_MODE: return TO_PLAY_MODE;			
 
 				///TODO: Add cases for the other items of Design Mode
-
+			case ITM_Copy : return Copy ;
+			case ITM_Cut: return Cut ;
+			case ITM_Paste : return Paste ;
+			case ITM_Delete : return Delete ;
+			case ITM_SaveGrid : return Save_Grid ;
+			case ITM_LoadGrid : return Load_Grid ;
 
 
 
@@ -137,7 +142,11 @@ CellPosition Input::GetCellClicked() const
 		{
 			///TODO: SetHCell and SetVCell of the object cellPost appropriately
 			//       using the coordinates x, y and the appropriate variables of the UI_Info Object (UI)
-			
+			int v,h;
+			h = x/UI.CellWidth ;
+			v = (y-UI.ToolBarHeight)/UI.CellHeight ;
+ 			cellPos.SetVCell (v);
+			cellPos.SetHCell (h);
 
 
 		}
