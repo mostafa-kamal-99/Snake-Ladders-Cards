@@ -73,27 +73,27 @@ int main()
 	///TODO: Call Function DrawPlayer of Class Ouput Multiple Times
 	///       to draw the following players:
 	///       playerNum (0) with color (PlayerColors[0] defined in UI object) in cell position (player_1 declared above) 
-	pOut->DrawPlayer(player_1,0,0);
+	pOut->DrawPlayer(player_1,0,UI.PlayerColors[0]);
 	///       playerNum (1) with color (PlayerColors[1] defined in UI object) in cell position (player_1 declared above) 
-	pOut->DrawPlayer(player_1,1,1);
+	pOut->DrawPlayer(player_1,1,UI.PlayerColors[1]);
 	
 	///       playerNum (2) with color (PlayerColors[2] defined in UI object) in cell position (player_1 declared above) 
-	pOut->DrawPlayer(player_1,2,2);
+	pOut->DrawPlayer(player_1,2,UI.PlayerColors[2]);
 	
 	///       playerNum (3) with color (PlayerColors[3] defined in UI object) in cell position (player_1 declared above) 
-	pOut->DrawPlayer(player_1,3,3);
+	pOut->DrawPlayer(player_1,3,UI.PlayerColors[3]);
 	
 	///       playerNum (0) with color (PlayerColors[0] defined in UI object) in cell position (player_15 declared above) 
-	pOut->DrawPlayer(player_15,0,0);
+	pOut->DrawPlayer(player_15,0,UI.PlayerColors[0]);
 	
 	///       playerNum (1) with color (PlayerColors[1] defined in UI object) in cell position (player_99 declared above) 
-	pOut->DrawPlayer(player_99,1,1);
+	pOut->DrawPlayer(player_99,1,UI.PlayerColors[1]);
 	
 	///       playerNum (5) with color (PlayerColors[1] defined in UI object) in cell position (player_99 declared above) 
-	pOut->DrawPlayer(player_99,5,1);
+	pOut->DrawPlayer(player_99,5,UI.PlayerColors[1]);
 	
 	///       playerNum (-1) with color (PlayerColors[1] defined in UI object) in cell position (player_99 declared above) 
-	pOut->DrawPlayer(player_99,-1,1);
+	pOut->DrawPlayer(player_99,-1,UI.PlayerColors[1]);
 	
 	///       Note the last two player is (INVALID)
 	
@@ -115,11 +115,9 @@ int main()
 	///TODO: Call Function DrawLadder of Class Ouput Multiple Times
 	///       to draw the following ladders:
 	///       a ladder from start_1 to end_34 declared above
-	std::cout<<"This section of code was reachedA " ;
 	pOut->DrawLadder(start_1,end_34);
 	///       a ladder from start_22 to end_99 declared above
 	pOut->DrawLadder(start_22,end_99);
-	std::cout<<"But this Not " ;
 	///       a ladder from start_1 to end_99 declared above (invalid)
 	pOut->DrawLadder(start_1,end_99);
 	///       a ladder from end_34 to start_1 declared above (invalid)
@@ -178,11 +176,11 @@ int main()
 	std::string info("You Entered: ") ;
 	char num[10] ;
 	sprintf(num,"%d",input) ;
-	cout<<num ;
 	std::string stringedNumber(num) ;
 
-	pIn->GetPointClicked(x,y) ;
+	
 	pOut->PrintMessage( info + stringedNumber ) ;
+	pIn->GetPointClicked(x,y) ;
 	pIn->GetPointClicked(x,y) ;
 
 	pOut->PrintMessage("FINISHED - (GetInteger) Test, Click to continue");
@@ -208,7 +206,6 @@ int main()
 		std::string S3(num2) ;
 		pOut->PrintMessage(S+S2+S3) ;
 		pIn->GetPointClicked(x,y) ;
-		cout<<"\n\n"<<S+S2+S3 ;
 	}
 
 	pOut->PrintMessage("FINISHED - (GetCellClicked) Test, Click to continue");
@@ -227,7 +224,6 @@ int main()
 	// 3- print on the status bar "You Entered" then print the string
 	// NOTE: GetString() is already implemented. It is just required from you to call it
 	std::string inputted = pIn->GetSrting(pOut) ;
-	pIn->GetPointClicked(x,y) ;
 	pOut->PrintMessage(info + inputted) ;
 	pIn->GetPointClicked(x,y) ;
 
@@ -252,6 +248,19 @@ int main()
 	// 1- Ask user to enter an integer and read it using GetInteger()
 	// 2- Call SetVCell() of cellpos_1 with that integer
 	// 3- Print GetVCell() of cellpos_1 as follows: "Now the vCell = 5" (assuming the entered integer is 5)
+	/*for(int i = 0 ; i<5 ; i++){
+		cout<<"\nIteration " <<i<<"\n" ;
+		pOut->PrintMessage("Please enter an integer") ;
+		int integer = pIn->GetInteger(pOut) ;
+		cout<<"\n\nwhy is this a fucking problem" ;
+		cellpos_1.SetVCell(input) ;
+		sprintf(num, "%d", cellpos_1.VCell()) ;
+		string inputString(num) ;
+		string printed = "Now the vCell = " + inputString ;
+		pOut->PrintMessage(printed) ;
+		pIn->GetPointClicked(x,y) ;
+	}*/
+
 	// 4- Call GetPointClicked()
 	// 5- Repeat the above steps FIVE TIMES
 	// 6- Repeat all the above steps to test SetHCell() function instead with the needed modifications
@@ -321,14 +330,34 @@ int main()
 
 			///TODO:  Call Function (PrintPlayersInfo) of Class Output with a string similar to 
 			//        the one given in the screenshot of project document
-
 			pOut->PrintMessage("Action: TO_PLAY_MODE , Click anywhere");
 			pOut->CreatePlayModeToolBar();
+			pOut->PrintPlayersInfo("P(100,0), P1(100,0), P2(100,0), P3(100,0) | Curr = 0");
+
+
 			break;
 
 
 			///TODO:  ADD Cases similarly for ALL the remaining actions of DESIGN Mode
+			case Copy:
+				pOut->PrintMessage("Action: Copy , Click anywhere");
+		     	break;
+		case Cut:
+				pOut->PrintMessage("Action: Cut , Click anywhere");
+			    break;
+		case Paste:
+			 	pOut->PrintMessage("Action: Paste , Click anywhere");
+			    break;   
+		case Delete:
+				pOut->PrintMessage("Action: Delete , Click anywhere");
+		     	break;
 
+		case  Save_Grid :
+				pOut->PrintMessage("Action: Save_Grid , Click anywhere");
+			    break;
+		case  Load_Grid :
+				pOut->PrintMessage("Action: Load_Grid , Click anywhere");
+			    break;
 
 		case ROLL_DICE:
 			pOut->PrintMessage("Action: ROLL_DICE , Click anywhere");
@@ -340,6 +369,13 @@ int main()
 			break;
 
 			///TODO:  ADD Cases similarly for ALL the remaining actions of PLAY Mode
+	     case  InputDiceValue :
+				pOut->PrintMessage("Action: InputDiceValue , Click anywhere");
+			    break;
+		case  NewGame :
+				pOut->PrintMessage("Action: NewGame , Click anywhere");
+			    break;
+		
 
 		}
 	}while(ActType != EXIT);
