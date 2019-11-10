@@ -1,5 +1,6 @@
 #include "Input.h"
-
+#include <iostream>
+using namespace std;
 #include "Output.h"
 
 //======================================================================================//
@@ -7,7 +8,7 @@
 //======================================================================================//
 //LAST VERSION DONT MODIFY
 Input::Input(window* pW) 
-{
+{  
 	pWind = pW; // point to the passed window
 }
 
@@ -24,8 +25,11 @@ string Input::GetSrting(Output *pO) const
 {
 	string Label;
 	char Key;
+	cout<<"\n works so far" ;
+	int k = 0 ;
 	while(1)
-	{
+	{   
+		cout<<"\n\nhere we fucking go , sub-iteration "<<k ;
 		pWind->WaitKeyPress(Key);
 		if(Key == 27 )	// ESCAPE key is pressed
 			return "";	// returns nothing as user has cancelled label
@@ -37,7 +41,10 @@ string Input::GetSrting(Output *pO) const
 			Label += Key;
 		if (pO)
 			pO->PrintMessage(Label);
+		cout<<"\ncompleted " ;
+		k++ ;
 	}
+	cout<<"\n\n\n\n\n\nFunction getsrting done\n" ;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////// 
@@ -47,8 +54,8 @@ int Input::GetInteger(Output *pO) const
 
 	///TODO: implement the GetInteger function as described in Input.h file 
 	//       using function GetString() defined above and function stoi()
+	cout<<"\nThis fucking works\n" ;
 	return stoi (GetSrting(pO));
-
 
 
 	// Note: stoi(s) converts string s into its equivalent integer (for example, "55" is converted to 55)
@@ -113,18 +120,36 @@ ActionType Input::GetUserAction() const
 
 	// ============ GUI in the Play mode ============
 	else	
-	{
+	{   
+		if ( y >= 0 && y < UI.ToolBarHeight)
+		{	
+			// Check which Menu item was clicked
+			// ==> This assumes that menu items are lined up horizontally <==
+
+			int ClickedItemOrder = (x / UI.MenuItemWidth);
+
 		///TODO:
 		// perform checks similar to Design mode checks above for the Play Mode
 		// and return the corresponding ActionType
+				switch (ClickedItemOrder)
+				{
+				case ITM_ROLL_DICE : return ROLL_DICE ;
+				case ITM_SWITCH_TO_DESIGN_MODE : return TO_DESIGN_MODE ; 
+				case ITM_InputDiceValue : return InputDiceValue ;
+				case ITM_NewGame : return NewGame ;
+				case ITM_Exit : return EXIT  ;
+				default : return EMPTY ;
+				}	
 
-		return TO_DESIGN_MODE;	// just for now ==> This should be updated
+		}
 
+		if ( (y >= UI.ToolBarHeight) && (y < UI.height - UI.StatusBarHeight))
+		{
+			return GRID_AREA;	
+		}
 
-
-
-	}	
-
+		return STATUS;
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////// 
