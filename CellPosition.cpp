@@ -36,8 +36,10 @@ bool CellPosition::SetVCell(int v)
 		vCell = v; 
 		return true ; 
 	}
-	else return false;
-
+	else {
+		vCell = -1 ;
+		return false;
+	}
 	
 }
 
@@ -49,7 +51,10 @@ bool CellPosition::SetHCell(int h)
 		hCell = h; 
 		return true ;
 	}
-	else return false; 
+	else {
+		hCell = -1 ;
+		return false;
+	}
 }
 
 int CellPosition::VCell() const 
