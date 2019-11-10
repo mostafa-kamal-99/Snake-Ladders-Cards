@@ -242,9 +242,9 @@ void Output::CreatePlayModeToolBar() const
 	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\Menu_SwitchToGrid.jpg";
 
 	///TODO: Prepare images for each menu item and add it to the list
-	MenuItemImages[ITM_Player] = "images\\Menu_Player.jpg";
-
-
+	MenuItemImages[ITM_InputDiceValue] = "images\\input.jpg";
+	MenuItemImages[ITM_NewGame] = "images\\new.jpg";
+	MenuItemImages[ITM_Exit] = "images\\Menu_Exit.jpg";
 
 	// Draw menu item one image at a time
 	for(int i=0; i < PLAY_ITM_COUNT; i++)
@@ -269,7 +269,7 @@ void Output::PrintMessage(string msg) const	//Prints a message on status bar
 void Output::PrintPlayersInfo(string info)
 {
 	///TODO: Clear what was written on the toolbar
-	ClearToolBar();
+	//ClearToolBar();
 
 	// Set the pen and font before drawing the string on the window
 	pWind->SetPen(UI.PlayerInfoColor); 
@@ -378,7 +378,9 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 		x += radius + 2 + radius; // because playerNum 1 and 3 are drawn in the second column of circles
 
 	///TODO: Draw the player circle in center(x,y) and filled with the playerColor passed to the function
+	pWind->SetBrush(playerColor);
 	pWind->DrawCircle(x,y,radius,FILLED) ;
+	
 
 
 	
@@ -388,7 +390,8 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 
 void Output::DrawLadder(const CellPosition & fromCell, const CellPosition & toCell) const
 {
-	std::cout<<"\nThis Fucntion Was called " ;
+
+
 	///TODO: Validate the Cell Position (Must be Vertical Cells AND toCell below fromCell, otherwise, Do NOT draw)
 	if( ( fromCell.HCell() != toCell.HCell() ) || fromCell.VCell() >= toCell.VCell() ) return ;
 
@@ -430,17 +433,16 @@ void Output::DrawLadder(const CellPosition & fromCell, const CellPosition & toCe
 
 	// The cross lines are drawn on the Horizontal Borders of the Cells between fromCell to toCell
 	// Check the drawn ladders in the project document and imitate it
-	std::cout<<"And computing ...\n" ;
+	
 	///TODO: Draw the cross horizontal lines of the ladder using the appropriate coordinates
 	CellPosition Iterator = toCell ;
 	while( Iterator.VCell() > fromCell.VCell() ){
-		std::cout<<"\nANd iterated "<<toCell.VCell()-Iterator.VCell() <<"times" ;
 		int x = GetCellStartX(Iterator) ;
 		int y = GetCellStartY(Iterator) ;
 		pWind->DrawLine(x,y,x+UI.CellWidth,y,FRAME);
 		Iterator.SetVCell(Iterator.VCell() - 1) ;
 	}
-	std::cout<<"\n\nAnd finally completed" ;
+	
 	
 }
 
